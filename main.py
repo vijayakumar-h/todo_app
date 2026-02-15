@@ -36,7 +36,7 @@ def create_tasks(task: TaskSchema, db: Session = Depends(get_db)):
     db.add(new_task)
     db.commit()
     db.refresh(new_task)
-    return new_task
+    return [new_task]
 
 @app.patch("/tasks/{task_id}", response_model=TaskSchema)
 def update_task(task_id: int, updated_task: TaskSchema, db: Session = Depends(get_db)):
